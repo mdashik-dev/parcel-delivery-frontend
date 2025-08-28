@@ -10,7 +10,10 @@ import {
 import { Input } from "@/components/ui/input";
 import config from "@/config";
 import { cn } from "@/lib/utils";
-import { useLoginMutation } from "@/redux/features/auth/auth.api";
+import {
+  useLoginMutation,
+  useUserInfoQuery,
+} from "@/redux/features/auth/auth.api";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
@@ -28,23 +31,25 @@ export function LoginForm({
     },
   });
   const [login] = useLoginMutation();
+  const { data: userData } = useUserInfoQuery(undefined);
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const res = await login(data).unwrap();
 
       if (res.success) {
-        const path = `${res?.data?.user?.role?.toLowerCase()}` || "";
+        console.log(userData);
+        const path = `/${res?.data?.user?.role?.toLowerCase()}` || "/";
+        navigate(path); // <-- use role-based path
 
-        navigate(`/${path}`);
         toast.success("Logged in successfully");
       }
-    } catch (err) {
-      if (err.data.message === "Incorrect password") {
+    } catch (err: any) {
+      if (err?.data?.message === "Incorrect password") {
         toast.error("Invalid credentials");
       }
 
-      if (err.data.message === "User is not verified") {
+      if (err?.data?.message === "User is not verified") {
         toast.error("Your account is not verified");
         navigate("/verify", { state: data.email });
       }

@@ -35,7 +35,7 @@ const registerSchema = z
       })
       .max(50),
     email: z.email(),
-    role: z.enum([role.sender, role.reciever, role.delivery_man]),
+    role: z.enum([role.sender, role.receiver, role.delivery_man]),
     password: z.string().min(8, { error: "Password is too short" }),
     confirmPassword: z
       .string()

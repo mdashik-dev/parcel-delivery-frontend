@@ -15,15 +15,15 @@ export const adminSidebarItems: ISidebarItem[] = [
       },
     ],
   },
-  {
-    title: "Tour Management",
-    items: [
-      // {
-      //   title: "Add Tour Type",
-      //   url: "/admin/add-tour-type",
-      //   component: AddTourType,
-      // },
+  // {
+  //   title: "Tour Management",
+  //   items: [
+  //     {
+  //       title: "Add Tour Type",
+  //       url: "/admin/add-tour-type",
+  //       component: AddTourType,
+  //     },
 
-    ],
-  },
+  //   ],
+  // },
 ];

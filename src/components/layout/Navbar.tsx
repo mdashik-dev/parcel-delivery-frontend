@@ -32,7 +32,7 @@ export const navigationLinks = [
   // Role-based dashboards
   { href: "/admin", label: "Admin Dashboard", role: role.admin },
   { href: "/sender", label: "Dashboard", role: role.sender },
-  { href: "/reciever", label: "Dashboard", role: role.reciever },
+  { href: "/receiver", label: "Dashboard", role: role.receiver },
 ]
 
 
